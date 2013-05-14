@@ -33,3 +33,8 @@ FIXME: listing of options this app accepts.
 Copyright © 2013 FIXME
 
 Distributed under the Eclipse Public License, the same as Clojure.
+=======
+gcm-clj
+=======
+
+GCM utils in Clojure
