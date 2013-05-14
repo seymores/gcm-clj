@@ -1,0 +1,25 @@
+
+HEROKU_POSTGRESQL_WHITE_URL
+
+REDISCLOUD_URL:              redis://rediscloud:cwAOAP7fcVD7AAgc@pub-redis-19724.us-east-1-2.2.ec2.garantiadata.com:19724
+try { 
+                URI redisUri = new URI(System.getenv("REDISCLOUD_URL"));
+                JedisPool pool = new JedisPool(new JedisPoolConfig(),
+                            redisUri.getHost(),
+                            redisUri.getPort(),
+                            Protocol.DEFAULT_TIMEOUT,
+                            redisUri.getUserInfo().split(":",2)[1]);
+} catch (URISyntaxException e) {
+               // URI couldn't be parsed.                   
+} 
+
+HEROKU_POSTGRESQL_WHITE_URL: postgres://xjbmjbypyykgpt:3k84QcoiACJCjw4OZAjgw5RdbW@ec2-54-235-152-226.compute-1.amazonaws.com:5432/dfu69f9g44nog7
+private static Connection getConnection() throws URISyntaxException, SQLException {
+    URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+    String username = dbUri.getUserInfo().split(":")[0];
+    String password = dbUri.getUserInfo().split(":")[1];
+    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+
+    return DriverManager.getConnection(dbUrl, username, password);
+}
