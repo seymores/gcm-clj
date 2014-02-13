@@ -2,7 +2,7 @@
   (:import (com.google.android.gcm.server Sender Message Message$Builder MulticastResult))
   (:gen-class))
 
-(def API_KEY "AIzaSyBzuaY-jffGkvzUcOIrBwv5QEtZuMeLF58")
+(def API_KEY "YOUR_KEY_HERE")
 (def sender (Sender. API_KEY))
 
 (defn buildMessage
@@ -21,9 +21,7 @@
 ;;  (notify m deviceId 2)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  ;; work around dangerous default behaviour in Clojure
-  (alter-var-root #'*read-eval* (constantly false))
-  (println "Hello, World!"))
+(defn test-send [api-key device-id retry]
+  (let [m (-> (Message$Builder.) (.addData "hello" "world") .build)
+        sender (Sender. api-key)]
+    (.send sender m device-id retry)))
